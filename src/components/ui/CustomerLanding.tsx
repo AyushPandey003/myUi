@@ -30,8 +30,8 @@ const CustomerLanding: FC = () => {
                 Create stunning 3D interfaces with our component library. Fast, accessible, and beautiful.
               </p>
               <div className="flex gap-4">
-                <Button variant="primary">Get Started</Button>
-                <Button variant="outline">See Demo</Button>
+                <Button variant="primary" onClick={() => window.location.href = '/components'}>Get Started</Button>
+                <Button variant="outline" onClick={() => window.location.href = '/components/carousel'}>See Demo</Button>
               </div>
             </motion.div>
 
