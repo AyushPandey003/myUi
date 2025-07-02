@@ -14,14 +14,14 @@ const Index = () => {
           <Canvas camera={{ position: [0, 0, 15], fov: 45 }}>
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 5]} intensity={1} />
-            {/* <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
+            <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
               <Center>
-                <Text3D font="/path/to/your/font.json" size={3} height={0.5} curveSegments={12}>
+                <Text3D font="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/fonts/helvetiker_regular.typeface.json" size={3} height={0.5} curveSegments={12}>
                   3D UI
                   <meshStandardMaterial color="#a78bfa" emissive="#a78bfa" emissiveIntensity={0.5} />
                 </Text3D>
               </Center>
-            </Float> */}
+            </Float>
             <OrbitControls enableZoom={false} enablePan={false} />
           </Canvas>
         </div>

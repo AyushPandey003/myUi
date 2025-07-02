@@ -5,6 +5,8 @@ import Index from "./pages";
 import CarouselPage from "./pages/CarouselPage";
 import SliderPage from "./pages/SliderPage";
 import Layout from "./components/ui/Layout";
+import Button3dPage from "./pages/Button3d";
+import ToggleSwitchPage from "./pages/ToggleSwitchPage";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route index element={<Index />} />
           <Route path="carousel" element={<CarouselPage />} />
           <Route path="slider" element={<SliderPage />} />
+          <Route path="button3d" element={<Button3dPage />} />
+          <Route path="toggle-switch" element={<ToggleSwitchPage />} />
           {/* Add other component routes here */}
         </Route>
       </Routes>

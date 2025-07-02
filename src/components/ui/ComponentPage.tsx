@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { ClipboardDocumentIcon, CheckIcon } from '@heroicons/react/24/outline';
 
 interface ComponentPageProps {
   title: string;
@@ -11,6 +10,17 @@ interface ComponentPageProps {
 
 const ComponentPage: React.FC<ComponentPageProps> = ({ title, description, component, code }) => {
   const [activeTab, setActiveTab] = useState('preview');
+  const [copied, setCopied] = useState(false);
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
@@ -44,9 +54,32 @@ const ComponentPage: React.FC<ComponentPageProps> = ({ title, description, compo
             {activeTab === 'preview' ? (
               <div className="h-[60vh]">{component}</div>
             ) : (
-              <SyntaxHighlighter language="tsx" style={vscDarkPlus} customStyle={{ background: 'transparent', padding: '1rem' }}>
-                {code}
-              </SyntaxHighlighter>
+              <div className="rounded-lg border border-slate-700 bg-slate-800/50 backdrop-blur-sm">
+                <div className="flex items-center justify-between border-b border-slate-700 px-4 lg:px-6 py-3">
+                  <h2 className="text-lg font-semibold text-white">Code</h2>
+                  <button
+                    onClick={copyToClipboard}
+                    className="flex items-center gap-2 rounded-md bg-purple-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-purple-700 transition-colors"
+                  >
+                    {copied ? (
+                      <>
+                        <CheckIcon className="h-4 w-4" />
+                        Copied!
+                      </>
+                    ) : (
+                      <>
+                        <ClipboardDocumentIcon className="h-4 w-4" />
+                        Copy
+                      </>
+                    )}
+                  </button>
+                </div>
+                <div className="p-4 lg:p-6 overflow-x-auto">
+                  <pre className="text-sm text-slate-300 whitespace-pre-wrap break-words lg:whitespace-pre">
+                    <code>{code}</code>
+                  </pre>
+                </div>
+              </div>
             )}
           </div>
         </div>
